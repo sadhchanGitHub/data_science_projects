@@ -1,0 +1,3 @@
+Input Ingredients: chicken, garlic, onion, spices
+Generated Recipe:
+chicken, garlic, onion, spices", "1/4 c. milk", "1/2 c. cooking oil", "2 Tbsp. vinegar", "1/4 tsp. salt", "1/8 tsp. pepper", "1/4 tsp. garlic powder"] ["Mix all ingredients.", "Bake at 400\u00b0 for 30 minutes.", "Serve with rice."] ["Mix all ingredients.", "Serve with rice."] ["Brown rice and cut into bite size pieces.", "Serve with cornbread."] ["Dice rice and serve with assorted vegetables."] ["Makes 4 servings."] ["Recipe is very thin.", "May be frozen and served on toast."] ["Serves 6."] Excellent for a family dinner."] ["Browned and served on rice."] ["Serves 4."] ["Use 4 to 6 servings."] ["May be frozen and served on toast."] Yields 2 servings."

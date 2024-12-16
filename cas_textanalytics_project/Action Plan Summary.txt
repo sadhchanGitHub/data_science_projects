@@ -1,0 +1,10 @@
+Action Plan Summary
+
+    Preprocess Dataset:
+        Remove duplicates and normalize ingredients/instructions.
+    Train on Cleaned 50k Dataset:
+        Train for 2 epochs, monitor results.
+    Evaluate Impact of Preprocessing:
+        Compare generated recipes against current outputs.
+    Scale to 100k Rows:
+        Only after confirming improvements from preprocessing.

@@ -1,0 +1,10 @@
+Input Ingredients: chicken, garlic, onion, spices
+Generated Recipe:
+chicken, garlic, onion, spices, green peppers, etc.", "1 lb. ground beef", "1 can tomato soup", "1/2 c. vinegar", "1/2 c. water", "1/2 c. brown sugar", "1 tsp. salt", "1/2 tsp. pepper", "2 to 3 Tbsp. mustard", "1/4 c. vinegar", "1/2 tsp. mustard seed", "1/4 tsp. salt", "1/2 tsp. pepper", "1/2 c. oil", "1/2 c. chopped celery", "1 1/2 tsp. dried thyme", "1/2 tsp. garlic powder", "1/2 tsp. salt", "1/4 tsp. pepper"] ["Brown ground beef; drain.", "Add all other ingredients.", "Let stand for 30 minutes.", "Add ground beef; stir to mix.", "Stir in vegetables.", "Put inInput Ingredients: chicken, garlic, onion, spices
+Generated Recipe:
+chicken, garlic, onion, spices, etc.", "1 1/2 c. rice", "1 c. chicken broth", "1 can cream of chicken soup", "1 can cream of celery soup", "1 can cream of mushroom soup", "1 can mushroom soup"] ["Mix all ingredients and cook 30 minutes at 350\u00b0."] ["Bake in a 9 x 13-inch baking dish in a casserole dish at 350\u00b0."] "Serve with rice, chicken broth and mushroom soup."] ["Put 1 can cream of chicken soup in a large pan.", "Add 1/2 of mixture and top with the rest of the soup.", "Bake at 350\u00b0 for 20 minutes.", "Top with the mushroom soup and mushroom soup.", "Bake for 1/2 hour.", "Serves 8."] ["Bake at 350\u00b0 for 15 minutes."] "S
+
+Input Ingredients: chicken, garlic, onion, spices
+Generated Recipe:
+chicken, garlic, onion, spices, etc.", "1 1/2 c. rice", "1 c. chicken broth", "1 can cream of chicken soup", "1 can cream of celery soup", "1 can cream of mushroom soup", "1 can mushroom soup"] ["Mix all ingredients and cook 30 minutes at 350\u00b0."] ["Bake in a 9 x 13-inch baking dish in a casserole dish at 350\u00b0."] "Serve with rice, chicken broth and mushroom soup."] ["Put 1 can cream of chicken soup in a large pan.", "Add 1/2 of mixture and top with the rest of the soup.", "Bake at 350\u00b0 for 20 minutes.", "Top with the mushroom soup and mushroom soup.", "Bake for 1/2 hour.", "Serves 8."] ["Bake at 350\u00b0 for 15 minutes."] "S
+
