@@ -1,0 +1,20 @@
+python load_combine_categories_for_TrainValTest.py \
+    --preprocessed_dir ../data/preprocessed_data \
+    --categories Forest Residential Highway AnnualCrop HerbaceousVegetation Industrial \
+    --image_size 128 \
+    --max_workers 4
+
+
+python load_combine_categories_for_TrainValTest.py \
+    --preprocessed_dir ../data/preprocessed_data \
+    --categories Forest  \
+    --image_size 128 \
+    --max_workers 4
+
+
+python load_combine_save_categories_for_TrainValTest.py \
+    --preprocessed_dir ../data/preprocessed_data \
+    --categories Forest Residential Highway AnnualCrop HerbaceousVegetation Industrial \
+    --image_size 128 \
+    --max_workers 4
+
