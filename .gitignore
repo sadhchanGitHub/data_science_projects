@@ -178,3 +178,5 @@ cython_debug/
 
 cas_textanalytics_project/data/*.csv
 
+cas_deepL_project/data/
+
