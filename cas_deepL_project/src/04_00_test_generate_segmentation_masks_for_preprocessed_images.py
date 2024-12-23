@@ -27,7 +27,7 @@ def save_mask(mask, output_path):
     print(f"Saved segmentation mask to {output_path}")
 
 # Select a category to test
-category = "AnnualCrop"  # Change as needed
+category = "Forest"  # Change as needed
 category_dir = os.path.join(preprocessed_dir, f"{category}_train.npy")
 output_category_dir = os.path.join(output_masks_dir, category)
 os.makedirs(output_category_dir, exist_ok=True)
