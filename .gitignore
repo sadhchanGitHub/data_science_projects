@@ -176,7 +176,7 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-cas_textanalytics_project/data/*.csv
+cas_textanalytics_project/data/
 
 cas_deepL_project/data/
 
