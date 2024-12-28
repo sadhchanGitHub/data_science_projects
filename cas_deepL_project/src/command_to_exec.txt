@@ -13,8 +13,10 @@ python load_combine_categories_for_TrainValTest.py \
 
 
 python load_combine_save_categories_for_TrainValTest.py \
-    --preprocessed_dir ../data/preprocessed_data \
-    --categories Forest Residential Highway AnnualCrop HerbaceousVegetation Industrial \
-    --image_size 128 \
+    --preprocessed_dir ../data/preprocessed_output_data \
+    --categories AnnualCrop Forest Residential Highway HerbaceousVegetation Industrial \
     --max_workers 4
+
+
+
 

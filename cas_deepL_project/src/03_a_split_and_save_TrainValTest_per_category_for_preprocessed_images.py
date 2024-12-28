@@ -19,10 +19,10 @@ def split_data_dask(X, y, test_size, val_size):
         X[train_indices], y[train_indices]
     )
 
+
 # Process and save splits incrementally
-# Process and save splits incrementally
-def process_and_save_category(preprocessed_outdir, category, test_size=0.2, val_size=0.2):
-    file_path = os.path.join(preprocessed_outdir, f"{category}.npy")
+def process_and_save_category(preprocessed_dir, training_dir, category, test_size=0.2, val_size=0.2):
+    file_path = os.path.join(preprocessed_dir, f"{category}.npy")
     print(f"Processing {category}...")
     
     # Load combined `.npy` file as Dask array
@@ -38,9 +38,10 @@ def process_and_save_category(preprocessed_outdir, category, test_size=0.2, val_
         ("val", X_val, y_val), 
         ("test", X_test, y_test)
     ]:
-        output_data_path = os.path.join(preprocessed_outdir, f"{category}_{split_name}.npy")
-        output_label_path = os.path.join(preprocessed_outdir, f"{category}_{split_name}_labels.npy")
-
+        output_data_path = os.path.join(training_dir, f"{category}_{split_name}.npy")
+        output_label_path = os.path.join(training_dir, f"{category}_{split_name}_labels.npy")
+        os.makedirs(preprocessed_dir, exist_ok=True)
+        
         # Convert Dask arrays to NumPy arrays and save
         np.save(output_data_path, split_data.compute())
         np.save(output_label_path, split_labels.compute())
@@ -49,9 +50,12 @@ def process_and_save_category(preprocessed_outdir, category, test_size=0.2, val_
 
 
 # Paths
-preprocessed_outdir = "../data/preprocessed_output_data"
+preprocessed_dir = "../data/preprocessed_data_imSize256"
+training_dir =  "../data/training_data"
+
+
 categories = ["Forest", "Residential", "Highway", "AnnualCrop", "HerbaceousVegetation", "Industrial"]
 
 # Process each category
 for category in categories:
-    process_and_save_category(preprocessed_outdir, category)
+    process_and_save_category(preprocessed_dir, training_dir, category)

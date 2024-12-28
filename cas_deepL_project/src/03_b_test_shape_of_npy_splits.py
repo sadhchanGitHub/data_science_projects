@@ -2,13 +2,13 @@ import numpy as np
 import os
 
 # Verify combined data
-preprocessed_output_dir = "../data/preprocessed_output_data"
+training_dir =  "../data/training_data"
 categories = ["Forest", "Residential", "Highway", "AnnualCrop", "HerbaceousVegetation", "Industrial"]
 
 for category in categories:
-    train_data_path = f"{preprocessed_output_dir}/{category}_train.npy"
-    val_data_path = f"{preprocessed_output_dir}/{category}_val.npy"
-    test_data_path = f"{preprocessed_output_dir}/{category}_test.npy"
+    train_data_path = f"{training_dir}/{category}_train.npy"
+    val_data_path = f"{training_dir}/{category}_val.npy"
+    test_data_path = f"{training_dir}/{category}_test.npy"
 
     # Load using NumPy
     train_data = np.load(train_data_path)

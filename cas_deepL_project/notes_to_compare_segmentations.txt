@@ -1,0 +1,29 @@
+1. Entropy (Measure of Class Diversity)
+
+    What it measures: The randomness or diversity of classes in the segmentation mask.
+    Why it's useful: Low entropy indicates a lack of diversity (e.g., one class dominates), which could suggest overconfidence in predictions.
+
+
+2. Pixel Class Distribution
+
+    What it measures: Counts the number of pixels per class in the segmentation mask.
+    Why it's useful: Helps you understand if the model is biased toward certain classes.
+
+3. Compactness (Spatial Consistency)
+
+    What it measures: Checks if the predicted classes form compact regions rather than scattered or noisy predictions.
+    Why it's useful: Compact masks are often indicative of good segmentation.
+
+4. Region Count
+
+    What it measures: Counts the number of contiguous regions for each class.
+    Why it's useful: A high number of scattered regions could indicate noisy segmentation.
+
+5. Segmentation Area (Proportion of Classes)
+
+    What it measures: Calculates the proportion of the image area occupied by each class.
+    Why it's useful: Helps validate if the proportions align with expected patterns.
+
+6. Compare Across Multiple Masks
+
+    Calculate metrics like entropy or area proportions for multiple masks in a category or split to find trends or anomalies.

@@ -14,11 +14,11 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(
 
 # Paths
 dataset_path = "../data/selected_categories/EuroSAT"
-preprocessed_dir = "../data/preprocessed_data_imSize513"
+preprocessed_dir = "../data/preprocessed_data_imSize256"
 os.makedirs(preprocessed_dir, exist_ok=True)
 
 
-image_size = 513
+image_size = 256
 #category = "AnnualCrop"
 categories = ["Forest", "Residential", "Highway", "AnnualCrop", "HerbaceousVegetation", "Industrial"]
 
