@@ -1,7 +1,7 @@
 """
 This is after "02_a_load_preprocess_dask_images_size513.py" 
 
-1.    "01_download_eurosat_selectedcategories.ipynb" -- download eurosat dataset images and save them in "data-selected_categories". use only images from EuroSAT folder which haas RGB images.
+1.    "01_download_eurosat_selectedcategories.ipynb" -- download eurosat dataset images and save them in "data-selected_categories". use only images from EuroSAT folder which has RGB images.
 Do not use images in folder EuroSATallBands, not for this use case
 
 ----------------------------------------------------------------------------------------------------
