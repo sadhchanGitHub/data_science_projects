@@ -30,7 +30,7 @@ timestamp = int(time.time())
 # Define the CNN model
 def create_cnn_eurosat_model(input_shape, num_classes):
     eurosat_cnn_model = Sequential([
-        Input(shape=input_shape),  # Use Input layer explicitly
+        Input(shape=input_shape),
         Conv2D(32, (3, 3), activation='relu'),
         MaxPooling2D((2, 2)),
         Conv2D(64, (3, 3), activation='relu'),
@@ -40,18 +40,49 @@ def create_cnn_eurosat_model(input_shape, num_classes):
         Dropout(0.5),
         Dense(num_classes, activation='softmax')
     ])
-
     eurosat_cnn_model.compile(optimizer='adam',
                               loss='categorical_crossentropy',
                               metrics=['accuracy'])
-
     return eurosat_cnn_model
+
+"""
+
+def create_cnn_eurosat_model_with_augmentation(input_shape, num_classes):
+    data_augmentation = tf.keras.Sequential([
+        RandomFlip("horizontal_and_vertical"),
+        RandomRotation(0.2),
+        RandomZoom(0.2),
+        RandomContrast(0.2)
+    ])
+    eurosat_cnn_model_with_augmentation = Sequential([
+        Input(shape=input_shape),
+        data_augmentation,
+        Conv2D(32, (3, 3), activation='relu', kernel_regularizer=l2(5e-4)),
+        BatchNormalization(),
+        MaxPooling2D((2, 2)),
+        Conv2D(64, (3, 3), activation='relu', kernel_regularizer=l2(5e-4)),
+        BatchNormalization(),
+        MaxPooling2D((2, 2)),
+        Conv2D(128, (3, 3), activation='relu', kernel_regularizer=l2(5e-4)),
+        BatchNormalization(),
+        MaxPooling2D((2, 2)),
+        Flatten(),
+        Dense(256, activation='relu', kernel_regularizer=l2(5e-4)),
+        Dropout(0.7),
+        Dense(num_classes, activation='softmax')
+    ])
+    eurosat_cnn_model_with_augmentation.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=1e-4),
+                          loss='categorical_crossentropy',
+                          metrics=['accuracy'])
+    return eurosat_cnn_model_with_augmentation
+
+
 """
 
 from tensorflow.keras.layers import RandomFlip, RandomRotation, RandomZoom, RandomContrast
 
 
-"""
+
 def create_cnn_eurosat_model_with_augmentation(input_shape, num_classes):
     # Data augmentation layer
     data_augmentation = tf.keras.Sequential([
@@ -90,19 +121,18 @@ def create_cnn_eurosat_model_with_augmentation(input_shape, num_classes):
                               metrics=['accuracy'])
     
     return eurosat_cnn_model_with_augmentation
-"""
 
 def create_cnn_eurosat_model_with_augmentation(input_shape, num_classes):
     # Data augmentation layer
     
-    """
+  
     data_augmentation = tf.keras.Sequential([
         RandomFlip("horizontal_and_vertical"),
         RandomRotation(0.2),
         RandomZoom(0.2),
         RandomContrast(0.2),
     ])
-    """
+
     
     data_augmentation = tf.keras.Sequential([
         RandomFlip("horizontal_and_vertical"),
@@ -180,7 +210,7 @@ def create_cnn_eurosat_model(input_shape, num_classes):
 
     return eurosat_cnn_model
 
-
+"""
 
 class CustomEarlyStopping(Callback):
     def __init__(self, patience=3):
@@ -225,10 +255,12 @@ def cyclical_lr(epoch, lr):
 lr_scheduler = LearningRateScheduler(cyclical_lr)
 
 
-def train_cnn_eurosat_model(log_file, model_name, model, train_generator, steps_per_epoch, val_generator, validation_steps, batch_size=32, epochs=20):
-    # Set up logging to a file
-    # log_filename = f'../logs/training_log_{int(time.time())}.log'
-    sys.stdout = open(log_file, 'w')  # Redirect stdout to the log file
+def train_cnn_eurosat_model(model_name, model, train_generator, steps_per_epoch, val_generator, validation_steps, batch_size=32, epochs=20):
+    
+    #set up logfile to track training epochs etc...
+    tr_log_file = f'../logs/04_b_execute_CNN_model_training_epochs_log_{timestamp}.log'
+    sys.stdout = open(tr_log_file, 'w')  # Redirect stdout to the log file
+
 
     try:
         # Add logging for the start of training
@@ -263,7 +295,7 @@ def train_cnn_eurosat_model(log_file, model_name, model, train_generator, steps_
         sys.stdout.close()
         sys.stdout = sys.__stdout__
         # print(f"Training log saved to: {log_filename}")
-        logging.info(f"Training log saved to: {log_file}.")#
+        logging.info(f"Training log saved to: {tr_log_file}.")#
     
     return history
 
@@ -271,7 +303,7 @@ def train_cnn_eurosat_model(log_file, model_name, model, train_generator, steps_
 
 
 # Visualize training progress
-def visualize_eurosat_cnn_model_training(history, timestamp):
+def visualize_eurosat_cnn_model_training(history, timestamp, model_name):
     plt.figure(figsize=(12, 4))
     plt.subplot(1, 2, 1)
     plt.plot(history.history['accuracy'], label='Train Accuracy')
@@ -288,5 +320,5 @@ def visualize_eurosat_cnn_model_training(history, timestamp):
     plt.ylabel('Loss')
     plt.legend()
     plt.tight_layout()
-    plt.savefig(f'../logs/eurosat_cnn_training_with_augmentation_progress_{timestamp}.png')
-    logging.info(f"with_augmentation Training progress visualized and saved as 'eurosat_training_progress_with_augmentation_{timestamp}.png'.")
+    plt.savefig(f'../logs/04_b_execute_CNN_model_{model_name}_{timestamp}.png')
+    logging.info(f"..Training Metrics visualized and saved as '../logs/04_b_execute_CNN_model_{model_name}_{timestamp}.png'.")

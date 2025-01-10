@@ -58,9 +58,10 @@ Also the combined masks in "data-trainingdata" are organized in split folder und
 
 import numpy as np
 import os
+import time
+import logging
+import sys
 
-# Define paths
-preprocessed_dir = "../data/preprocessed_data_imSize256"
 
 def combine_npy_files(category):
     # Get all batch files for the category
@@ -79,8 +80,8 @@ def combine_npy_files(category):
         if sample_shape is None:
             sample_shape = batch_data[0].shape  # Get shape of one sample
     
-    print(f"Total images for {category}: {total_images}")
-    print(f"Sample image shape: {sample_shape}")
+    logging.info(f"Total images for {category}: {total_images}")
+    logging.info(f"Sample image shape: {sample_shape}")
     
     # Create a memmapped file
     combined_file_path = os.path.join(preprocessed_dir, f"{category}.npy")
@@ -99,13 +100,53 @@ def combine_npy_files(category):
         batch_size = len(batch_data)
         combined_array[start_idx:start_idx+batch_size] = batch_data
         start_idx += batch_size
-        print(f"Appended {batch_file} to {combined_file_path}")
+        logging.info(f"Appended {batch_file} to {combined_file_path}")
     
-    print(f"Finished combining files for {category} into {combined_file_path}")
+    logging.info(f"Finished combining files for {category} into {combined_file_path}")
 
 # Categories
 categories = ["Forest", "Residential", "Highway", "AnnualCrop", "HerbaceousVegetation", "Industrial"]
 
-# Combine files for each category
-for category in categories:
-    combine_npy_files(category)
+# Main execution block
+if __name__ == "__main__":
+    timestamp = int(time.time())
+    
+    # Logging configuration
+    log_dir = "../logs"
+    os.makedirs(log_dir, exist_ok=True)
+    log_file = os.path.join(log_dir, f"02_b_combine_multiple_npy_into_one_{timestamp}.log")
+
+    # Configure logging only in the main process
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s - %(message)s",
+        handlers=[logging.FileHandler(log_file), logging.StreamHandler()],
+    )
+    logging.info(" \n")
+    logging.info("called via 02_b_combine_multiple_npy_into_one.py...\n")
+    logging.info(" Script Started ...\n")
+    logging.info("This script will take the resized images which are split in various npy files and combine and create one npy file per category ...\n")
+
+    # Check if image size is passed as an argument
+    if len(sys.argv) != 2:
+        print("Usage: python 02_b_combine_multiple_npy_into_one.py <image_size>")
+        sys.exit(1)
+
+    # Get image size from the command-line argument
+    image_size = int(sys.argv[1])
+    logging.info(f"image_size is {image_size}")
+
+    # Define paths
+    preprocessed_dir = f"../data/preprocessed_data_{image_size}"
+
+
+
+    # combine files for each category and create one .npy file
+    for category in categories:
+        try:
+            combine_npy_files(category)
+        except Exception as e:
+            logging.error(f"Error combine_npy_files {category}: {e}")
+
+
+    logging.info("script done \n")

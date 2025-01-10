@@ -14,12 +14,15 @@ timestamp = int(time.time())
 
 
 #import modules
-from define_eurosat_CNN_model import create_cnn_eurosat_model, train_cnn_eurosat_model, visualize_eurosat_cnn_model_training, create_cnn_eurosat_model_with_augmentation
+#from define_eurosat_CNN_model import create_cnn_eurosat_model
+from define_eurosat_CNN_model import train_cnn_eurosat_model, visualize_eurosat_cnn_model_training
+from define_eurosat_CNN_model import create_cnn_eurosat_model_with_augmentation
+
 
 # Logging configuration
 log_dir = "../logs"
 os.makedirs(log_dir, exist_ok=True)
-log_file = os.path.join(log_dir, f"eurosat_cnn_training_{int(datetime.now().timestamp())}.log")
+log_file = os.path.join(log_dir, f"04_b_execute_CNN_model_{int(datetime.now().timestamp())}.log")
 
 logging.basicConfig(
     level=logging.INFO,
@@ -115,7 +118,9 @@ def main():
 
         # Usage example
         training_dir = "../data/training_data"
-        categories = ["Forest", "Residential", "Highway", "AnnualCrop", "HerbaceousVegetation", "Industrial"]
+        #categories = ["Forest", "Residential", "Highway", "AnnualCrop", "HerbaceousVegetation", "Industrial"]
+        #switching to binary classification as for all categries not working-
+        categories = ["Highway", "HerbaceousVegetation"]
         
         # Call the function to calculate sample sizes and steps
         total_samples, train_samples_per_category, val_samples_per_category, steps_per_epoch, validation_steps = calculate_total_samples(
@@ -146,27 +151,29 @@ def main():
     try:
         # Model parameters
         input_shape = (256, 256, 3)  # Shape of input images
-        num_classes = 6  # Number of categories
+        num_classes = 2  # Number of categories
         
         # Create and compile the model
-        #model = create_cnn_eurosat_model(input_shape, num_classes)
-        
-        #not with data augmentation
+        # model = create_cnn_eurosat_model(input_shape, num_classes)
+
         model = create_cnn_eurosat_model_with_augmentation(input_shape, num_classes)
+        print(f"Type of model: {type(model)}")  # Should print <class 'tensorflow.keras.Model'> or similar
+       
+
         model_name = "create_cnn_eurosat_model_with_augmentation"
         print(f"model_name is {model_name} \n")
         # Print model summary
         model.summary()
     except Exception as e:
-        logging.error(f"Error create_cnn_eurosat_model_with_augmentation model: {e}")
+        logging.error(f"Error create_cnn_eurosat_model model: {e}")
         raise
 
     try:
         # Train the model
-        history = train_cnn_eurosat_model(log_file, model_name, model, train_generator, steps_per_epoch, val_generator, validation_steps)
-        logging.info(f"Model {model} training completed.")
+        history = train_cnn_eurosat_model(model_name, model, train_generator, steps_per_epoch, val_generator, validation_steps)
+        logging.info(f"Model {model_name} training completed.")
     except Exception as e:
-        logging.error(f"Error Model {model} during training: {e}")
+        logging.error(f"Error Model {model_name} during training: {e}")
         raise
 
 
@@ -187,7 +194,7 @@ def main():
 
     try:
         # Visualize training progress
-        visualize_eurosat_cnn_model_training(history, timestamp)
+        visualize_eurosat_cnn_model_training(history, timestamp, model_name)
         logging.info("Training progress visualization completed.")
     
     except Exception as e:
