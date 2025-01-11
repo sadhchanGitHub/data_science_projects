@@ -191,8 +191,6 @@ def main():
         raise
     
 
-
-
     logging.info(f"Script Ended at {time.strftime('%Y-%m-%d %H:%M:%S')}\n")
 
 if __name__ == "__main__":
